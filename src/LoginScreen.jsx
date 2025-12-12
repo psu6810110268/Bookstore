@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Button, Form, Input, Alert } from 'antd';
+import { Button, Form, Input, Alert, Checkbox } from 'antd'; // 1. เพิ่ม Checkbox
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 const URL_AUTH = "/api/auth/login"
 
 export default function LoginScreen(props) {
-
+ const navigate = useNavigate();
  const [isLoading, setIsLoading] = useState(false)
  const [errMsg, setErrMsg] = useState(null)
 
@@ -15,8 +16,17 @@ export default function LoginScreen(props) {
    setErrMsg(null)
    const response = await axios.post(URL_AUTH, formData)
    const token = response.data.access_token
+   
+   // เช็คว่าติ๊ก Remember me ไหม?
+   if (formData.remember) {
+     localStorage.setItem('token', token)    // ติ๊ก: จำตลอดไป (อยู่ใน LocalStorage)
+   } else {
+     sessionStorage.setItem('token', token)  // ไม่ติ๊ก: จำแค่ชั่วคราว (อยู่ใน SessionStorage)
+   }
+   
    axios.defaults.headers.common = { 'Authorization': `bearer ${token}` }
-   props.onLoginSuccess();
+   navigate('/'); 
+
   } catch(err) {
     console.log(err)
     setErrMsg(err.message)
@@ -45,6 +55,12 @@ export default function LoginScreen(props) {
          rules={[{required: true},]}>
          <Input.Password />
       </Form.Item>
+
+      {/* 3. เพิ่มปุ่ม Checkbox ตรงนี้ */}
+      <Form.Item name="remember" valuePropName="checked">
+        <Checkbox>Remember me</Checkbox>
+      </Form.Item>
+
       <Form.Item>
         <Button
           type="primary"
