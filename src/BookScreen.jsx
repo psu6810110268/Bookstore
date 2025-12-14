@@ -56,12 +56,6 @@ function BookScreen() {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "2em" }}>
-        {/* เปลี่ยนจาก component AddBook เป็นปุ่มธรรมดาที่กดแล้วย้ายหน้า */}
-        <Button type="primary" onClick={() => navigate('/add')}>
-            + Add New Book
-        </Button>
-      </div>
       <Divider>My Books List</Divider>
       <Spin spinning={loading}>
         <BookList 
