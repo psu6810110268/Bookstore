@@ -7,7 +7,7 @@ import axios from 'axios'
 // โหลด token จากที่เก็บไว้ (ถ้ามี) แล้วตั้งค่าให้ axios ใช้
 const token = localStorage.getItem('token') || sessionStorage.getItem('token');
 if (token) {
-  axios.defaults.headers.common = { 'Authorization': `bearer ${token}` }
+  axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
 }
 
 createRoot(document.getElementById('root')).render(

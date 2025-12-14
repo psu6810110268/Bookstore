@@ -24,7 +24,7 @@ export default function LoginScreen(props) {
      sessionStorage.setItem('token', token)  // ไม่ติ๊ก: จำแค่ชั่วคราว (อยู่ใน SessionStorage)
    }
    
-   axios.defaults.headers.common = { 'Authorization': `bearer ${token}` }
+   axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
    navigate('/'); 
 
   } catch(err) {
