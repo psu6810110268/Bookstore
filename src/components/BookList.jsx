@@ -1,5 +1,5 @@
 import { Table, Button, Space, Popconfirm, Tag, Image } from 'antd';
-
+import GeminiModal from './GeminiModal';
 
 export default function BookList(props) {
 
@@ -59,6 +59,7 @@ export default function BookList(props) {
       key: 'action',
       render: (text, record) => (
       <Space>
+        <GeminiModal book={record} />
         <Button type="primary" onClick={() => props.onLiked(record)}>Like</Button>
         <Button type="secondary" onClick={() => props.onEdit(record)}>Edit</Button>
         <Popconfirm title="Are you sure you want to delete this book?" onConfirm={() => props.onDeleted(record.id)}>
