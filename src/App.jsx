@@ -5,7 +5,9 @@ import LoginScreen from './LoginScreen';
 import BookScreen from './BookScreen';
 import AddBook from './components/AddBook';
 import EditBook from './components/EditBook';
-import AppHeader from './components/AppHeader'; // 1. import Header มา
+import AppHeader from './components/AppHeader';
+import CategoryScreen from './components/CategoryScreen';
+import DashboardScreen from './components/DashboardScreen';
 
 axios.defaults.baseURL = "http://localhost:3000"
 
@@ -46,6 +48,18 @@ function App() {
         <Route path="/edit/:id" element={
           <PrivateRoute>
              <EditBook/>
+          </PrivateRoute>
+        } />
+
+        <Route path="/category" element={
+          <PrivateRoute>
+             <CategoryScreen/>
+          </PrivateRoute>
+        } />
+
+        <Route path="/dashboard" element={
+          <PrivateRoute>
+             <DashboardScreen/>
           </PrivateRoute>
         } />
      </Routes>

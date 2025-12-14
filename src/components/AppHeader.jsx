@@ -1,6 +1,7 @@
 import { Menu, Layout, Button } from 'antd';
 import { HomeOutlined, BookOutlined, LogoutOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { AppstoreOutlined, PieChartOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
 
@@ -18,18 +19,30 @@ export default function AppHeader() {
   };
 
   // รายการเมนู
-  const items = [
+const items = [
     {
       label: 'Book Store',
       key: '/',
       icon: <HomeOutlined />,
     },
+
+    {
+      label: 'Dashboard',
+      key: '/dashboard',
+      icon: <PieChartOutlined />,
+    },
+
     {
       label: 'Add Book',
       key: '/add',
       icon: <PlusCircleOutlined />,
     },
-    // เดี๋ยวเราค่อยมาเพิ่มเมนู Category ตรงนี้ทีหลัง
+
+    {
+      label: 'Categories',
+      key: '/category',
+      icon: <AppstoreOutlined />,
+    },
   ];
 
   return (
